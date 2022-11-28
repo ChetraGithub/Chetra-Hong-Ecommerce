@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: sans-serif;
+    background: rgb(230, 230, 230);
+}
+
+nav {
+    height: 8vh;
+    display: flex;
+    background: white;
+    position: sticky;
+    top: 0;
+}
+
+.nav-left, .nav-center, .nav-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-left {
+    width: 20%;
+    margin-left: 100px;
+    justify-content: left;
+}
+
+.nav-center {
+    width: 60%;
+}
+
+.nav-right {
+    width: 20%;
+    margin-right: 100px;
+    justify-content: right;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+.link:hover {
+    font-weight: bold;
+}
+
+.link-seller {
+    margin-left: 12px;
+}
+
+#active {
+    color: blue;
+}
+

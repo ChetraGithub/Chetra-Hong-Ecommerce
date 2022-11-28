@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chetra Computer | Seller</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/seller.css">
+    <script defer src="../js/seller.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="#" class="link">CUSTOMER</a>
+            <a href="#" class="link-seller link" id="active">SELLER</a>
+        </div>
+        <div class="nav-center">
+            <a href="#" class="link">CHETRA COMPUTER</a>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="link">LOGIN</a>
+        </div>
+    </nav>
+
+    <div id="dialog">
+        <div class="form-container">
+            <h2 id="form-title">Create a Product</h2>
+            <form id="imformation">
+                <div class="form-group">
+                    <label for="pdt-name">Product name :</label><br>
+                    <input id="pdt-name" type="text" placeholder="Enter product name...">
+                </div>
+                <div class="form-group">
+                    <label for="pdt-type">Product type :</label><br>
+                    <select id="pdt-type" name="pdt-type">
+                        <option value="" selected disabled>Select</option>
+                        <option value="Apple">Apple</option>
+                        <option value="MSI">MSI</option>
+                        <option value="Lenovo">Lenovo</option>
+                        <option value="Asus">Asus</option>
+                        <option value="">Accer</option>
+                        <option value="Accer">Dell</option>
+                        <option value="Hp">Hp</option>
+                        <option value="Other...">Other...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pdt-price">Product price :</label><br>
+                    <input id="pdt-price" type="text" placeholder="Enter product price...">
+                </div>
+                <div class="form-group">
+                    <label for="pdt-discription">Product discription</label><br>
+                    <textarea name="pdt-discription" id="pdt-discription"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pdt-comment">Comments</label><br>
+                    <textarea name="pdt-comment" id="pdt-comment"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pdt-image">Image of product</label><br>
+                    <input id="pdt-image" type="file">
+                </div>
+                <div class="btn-group">
+                    <button id="btn-cancel">Cancel</button>
+                    <button id="btn-create">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="container">
+        <div id="menu">
+            <div class="menu-left">
+                <span><b>Your Products</b></span>
+            </div>
+            <div class="menu-right">
+                <button id="create">Create New Product</button>
+            </div>
+        </div>
+        <div id="didplay-product">
+            <div class="item">
+                <div class="number"><span id="uid">1</span></div>
+                <span id="name">Apple Mac Book</span>
+                <span id="price">999.99$</span>
+                <span id="discription">Black, 16G Ram, 1Tb Hard drive</span>
+                <div id="modify">
+                    <img src="../images/edit.png" alt="">
+                    <img src="../images/delete.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

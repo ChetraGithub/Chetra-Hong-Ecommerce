@@ -1,0 +1,162 @@
+#container {
+    height: auto;
+}
+
+#menu {
+    height: auto;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-left {
+    margin-left: 100px;
+}
+
+.menu-right {
+    margin-right: 100px;
+}
+
+#create {
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    background: #6F75FE;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+#didplay-product {
+    height: auto;
+    margin-top: 25px;
+    margin-left: 100px;
+    margin-right: 100px;
+    border-radius: 25px;
+    padding: 10px;
+    background: rgb(194, 194, 194);
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.item {
+    height: auto;
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+}
+
+#modify img:first-child {
+    width: 80px;
+}
+
+#modify img:last-child {
+    width: 59px;
+    height: 60px;
+}
+
+.number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    box-shadow: rgba(20, 20, 31, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+#name {
+    width: 25%;
+    margin-left: 20px;
+}
+
+#price {
+    width: 20%;
+}
+
+#discription {
+    width: 35%;
+}
+
+#modify {
+    width: 15%;
+    display: flex;
+    justify-content: right;
+}
+
+/* dialog ---------------------------------------------------- */
+
+#dialog {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 10;
+    display: flex;
+    display: none;
+}
+
+.form-container {
+    height: auto;
+    width: 40%;
+    margin: auto;
+    border-radius: 20px;
+    padding: 20px;
+    background: white;
+}
+
+#imformation {
+    margin-top: 15px;
+}
+
+.form-group {
+    margin-top: 10px;
+}
+
+.form-group > label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: blue;
+}
+
+#pdt-name, #pdt-type, #pdt-price, #pdt-discription, #pdt-comment {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    outline: none;
+    font-size: 1rem;
+    border: 2px solid black;
+}
+
+#pdt-discription, #pdt-comment {
+    resize: none;
+}
+
+.btn-group {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#btn-cancel, #btn-create {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 20px;
+    border: none;
+    background: red;
+    color: white;
+}
+
+#btn-create {
+    background: blue;
+}
