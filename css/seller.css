@@ -28,7 +28,7 @@
     font-weight: bold;
 }
 
-#didplay-product {
+#display-product {
     height: auto;
     margin-top: 25px;
     margin-left: 100px;
@@ -61,14 +61,15 @@
 }
 
 .number {
-    width: 60px;
-    height: 60px;
+    height: 45px;
+    width: 80px;
     border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: white;
-    box-shadow: rgba(20, 20, 31, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    font-weight: bold;
+    background: #6F75FE;
+    color: white;
 }
 
 #name {
@@ -100,7 +101,6 @@
     width: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 10;
-    display: flex;
     display: none;
 }
 
@@ -110,6 +110,7 @@
     margin: auto;
     border-radius: 20px;
     padding: 20px;
+    margin-top: 10px;
     background: white;
 }
 
