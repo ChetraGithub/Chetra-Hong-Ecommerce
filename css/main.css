@@ -4,15 +4,15 @@
 }
 body {
     font-family: sans-serif;
-    background: rgb(230, 230, 230);
 }
 
 nav {
-    height: 8vh;
+    height: 10vh;
     display: flex;
-    background: white;
     position: sticky;
     top: 0;
+    background: rgb(230, 230, 230);
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .nav-left, .nav-center, .nav-right {

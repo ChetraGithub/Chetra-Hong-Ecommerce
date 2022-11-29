@@ -27,38 +27,50 @@
         <div class="form-container">
             <h2 id="form-title">Create a Product</h2>
             <form id="imformation">
-                <div class="form-group">
-                    <label for="pdt-name">Product name :</label><br>
-                    <input id="pdt-name" type="text" placeholder="Enter product name...">
+                <div class="form-group two-col">
+                    <div class="add-left">
+                        <label for="pdt-name">Product name :</label><br>
+                        <input id="pdt-name" type="text" placeholder="Enter product name...">
+                    </div>
+                    <div class="add-right">
+                        <label for="pdt-type">Product type :</label><br>
+                        <select id="pdt-type" name="pdt-type">
+                            <option value="" selected disabled>Select</option>
+                            <option value="Apple">Apple</option>
+                            <option value="MSI">MSI</option>
+                            <option value="Lenovo">Lenovo</option>
+                            <option value="Asus">Asus</option>
+                            <option value="Accer">Accer</option>
+                            <option value="Dell">Dell</option>
+                            <option value="Hp">Hp</option>
+                            <option value="Other...">Other...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group two-col">
+                    <div class="add-left">
+                        <label for="pdt-price">Product price :</label><br>
+                        <input id="pdt-price" type="text" placeholder="Enter only number...">
+                    </div>
+                    <div class="add-right">
+                        <label for="currency">Currency</label>
+                        <select name="currency" id="currency">
+                            <option value="" selected disabled>Currency</option>
+                            <option value="៛">Riels</option>
+                            <option value="$">Dollar</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="pdt-type">Product type :</label><br>
-                    <select id="pdt-type" name="pdt-type">
-                        <option value="" selected disabled>Select</option>
-                        <option value="Apple">Apple</option>
-                        <option value="MSI">MSI</option>
-                        <option value="Lenovo">Lenovo</option>
-                        <option value="Asus">Asus</option>
-                        <option value="Accer">Accer</option>
-                        <option value="Dell">Dell</option>
-                        <option value="Hp">Hp</option>
-                        <option value="Other...">Other...</option>
-                    </select>
+                    <label for="pdt-description">Product descriptions :</label><br>
+                    <textarea name="pdt-description" id="pdt-description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="pdt-price">Product price :</label><br>
-                    <input id="pdt-price" type="text" placeholder="Enter product price...">
-                </div>
-                <div class="form-group">
-                    <label for="pdt-discription">Product discription</label><br>
-                    <textarea name="pdt-discription" id="pdt-discription"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="pdt-comment">Comments</label><br>
+                    <label for="pdt-comment">Comments :</label><br>
                     <textarea name="pdt-comment" id="pdt-comment"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="pdt-image">Image of product</label><br>
+                    <label for="pdt-image">Image of product :</label><br>
                     <input id="pdt-image" type="file">
                 </div>
                 <div class="btn-group">

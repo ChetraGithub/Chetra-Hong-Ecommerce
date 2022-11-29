@@ -30,14 +30,8 @@
 
 #display-product {
     height: auto;
-    margin-top: 25px;
-    margin-bottom: 20px;
-    margin-left: 100px;
-    margin-right: 100px;
-    border-radius: 25px;
+    margin: 0px 70px;
     padding: 10px;
-    background: rgb(194, 194, 194);
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .item {
@@ -45,11 +39,10 @@
     display: flex;
     align-items: center;
     margin: 20px;
-    padding: 10px 20px;
-    border-radius: 50px;
+    padding: 10px 20px; 
+    border-radius: 20px;
     background: white;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
 #modify img:first-child {
@@ -82,7 +75,7 @@
     width: 20%;
 }
 
-#discription {
+#description {
     width: 35%;
 }
 
@@ -91,18 +84,23 @@
     display: flex;
     justify-content: right;
 }
-
 /* dialog ---------------------------------------------------- */
 
 #dialog {
     height: 100vh;
+    width: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 10;
-    display: none;
+    /* display: none; */
+}
+
+/* image show ------------------------------------------------ */
+#img-container {
+    width: 40%;
+    background: #000;
 }
 
 .form-container {
@@ -111,7 +109,7 @@
     margin: auto;
     border-radius: 20px;
     padding: 20px;
-    margin-top: 10px;
+    margin-top: 50px;
     background: white;
 }
 
@@ -123,13 +121,23 @@
     margin-top: 10px;
 }
 
-.form-group > label {
+.form-group > label, .add-left > label, .add-right > label {
     font-size: 1.1rem;
     font-weight: bold;
     color: blue;
 }
 
-#pdt-name, #pdt-type, #pdt-price, #pdt-discription, #pdt-comment {
+.two-col {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.add-left, .add-right {
+    width: 50%;
+}
+
+#pdt-name, #pdt-type, #pdt-price, #currency, #pdt-description, #pdt-comment {
     width: 100%;
     padding: 12px;
     box-sizing: border-box;
@@ -139,7 +147,7 @@
     border: 2px solid black;
 }
 
-#pdt-discription, #pdt-comment {
+#pdt-description, #pdt-comment {
     resize: none;
 }
 
@@ -162,3 +170,4 @@
 #btn-create {
     background: blue;
 }
+
