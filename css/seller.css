@@ -75,6 +75,10 @@
     width: 20%;
 }
 
+#type {
+    width: 14%;
+}
+
 #description {
     width: 35%;
 }
@@ -94,7 +98,7 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 10;
-    /* display: none; */
+    display: none;
 }
 
 /* image show ------------------------------------------------ */
@@ -170,4 +174,3 @@
 #btn-create {
     background: blue;
 }
-

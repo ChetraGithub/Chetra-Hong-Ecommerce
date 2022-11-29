@@ -3,9 +3,9 @@ const dom_dialog = document.querySelector("#dialog");
 let dom_container = document.querySelector("#container");
 
 // DATABASE ===============================================================
-let products = [{ name: "Mac Book Pro 2022", type: "Apple", price: 1999.99, currency: "$", description: "12G Ram, 1TB M1", comment: "From China", image: "C/", rating: 5},
-                { name: "MSI T 450", type: "MSI", price: 750, currency: "$", description: "16G Ram, 2TB SSD", comment: "From China", image: "C/", rating: 3 },
-                { name: "TUF Gaming Pro 2022", type: "MSI", price: 2000000, currency: "៛", description: "12G SSD, 520G SSD", comment: "From China", image: "C/", rating: 4}];
+let products = [{ name: "Mac Book Pro 2022", type: "Apple", price: 1999.99, currency: "$", description: "12G Ram, 1TB M1", comment: "From China", image: "C/", rating: 5 },
+{ name: "MSI T 450", type: "MSI", price: 750, currency: "$", description: "16G Ram, 2TB SSD", comment: "From China", image: "C/", rating: 3 },
+{ name: "TUF Gaming Pro 2022", type: "MSI", price: 2000000, currency: "៛", description: "12G SSD, 520G SSD", comment: "From China", image: "C/", rating: 4 }];
 
 // VARIABLES ==============================================================
 const imageFile = document.querySelector('#pdt-image');
@@ -19,6 +19,9 @@ let getImage = document.querySelector("#pdt-image");
 let titleForm = document.querySelector("#form-title");
 let numberOfProduct = 0;
 let indexOfProduct = products.length;
+let priceSell = 0;
+let canDollar = 4000;
+let canRiels = 16000000;
 
 // FUNCTIONS ==============================================================
 // Save data to local storage ---------------------------------------------
@@ -27,12 +30,13 @@ function saveProduct() {
 }
 
 // Get local data to update -----------------------------------------------
-function dataRoading() {
+function dataLoading() {
     let localData = JSON.parse(localStorage.getItem("products"));
     if (localData != null) {
         products = localData;
     }
 }
+
 // Show dialog ------------------------------------------------------------
 function onShow(event) {
     dom_dialog.style.display = "block";
@@ -45,8 +49,20 @@ function onHide(event) {
 
 // On btn create products --------------------------------------------------------
 function onCreateProduct() {
+    let sellerPrice = parseInt(getPrice.value);
     let checkDataField = getName.value && getType.value && getPrice.value && getDescription.value && getComment.value && getImage.value;
-    if (checkDataField) {
+
+    if (!(checkDataField)) {
+        window.alert("Please fill all the fields!");
+    }
+    else if (priceSell === 0) {
+        // check if priceSell eqaul 0 , user don't choose currency
+        window.alert("You forgot to choose Currency !!!");
+    }
+    else if (sellerPrice > priceSell) {
+        window.alert("Your price is maximum !!!");
+    }
+    else {
         let product = {};
         product.name = getName.value;
         product.type = getType.value;
@@ -63,9 +79,7 @@ function onCreateProduct() {
         onHide();
         renderProducts();
     }
-    else {
-        window.alert("Please fill all the fields!");
-    }
+
 }
 // On btn cancel ----------------------------------------------------------
 function onCancel(event) {
@@ -87,12 +101,16 @@ function addProduct(event) {
     getName.value = ""
     getType.value = "";
     getPrice.value = "";
-    getDescription.value = ""
+    getCurrency.value = "";
+    getDescription.value = "";
     getComment.value = "";
     imageFile.value = "";
+    priceSell = 0;
 
     titleForm.textContent = "Create a Product";
     btn_add.textContent = "Create";
+
+    getPrice.placeholder = "Choose currency";
 
     indexOfProduct = products.length;
 }
@@ -149,6 +167,10 @@ function renderProducts() {
         name.id = "name";
         name.textContent = product.name;
 
+        let type = document.createElement("span");
+        type.id = "type";
+        type.textContent = product.type;
+
         let price = document.createElement("span");
         price.id = "price";
         price.textContent = product.price + " " + product.currency;
@@ -173,6 +195,7 @@ function renderProducts() {
         // Add to item
         item.appendChild(number);
         item.appendChild(name);
+        item.appendChild(type);
         item.appendChild(price);
         item.appendChild(description);
         item.appendChild(modify);
@@ -186,6 +209,24 @@ function renderProducts() {
     saveProduct();
 }
 
+// Change currency
+function uploadCurrency() {
+    let currency = getCurrency.value;
+    let sign = "៛";
+    if (currency === "$") {
+        priceSell = canDollar;
+        sign = "$";
+    }
+    else if (currency === "៛") {
+        priceSell = canRiels;
+    }
+    else {
+        priceSell = 0;
+    }
+    getPrice.placeholder = priceSell + sign + " Down";
+}
+
+
 // ADD EVENTS =============================================================
 const btn_create = document.querySelector("#create");
 btn_create.addEventListener("click", addProduct);
@@ -196,8 +237,10 @@ btn_cancel.addEventListener("click", onCancel);
 let btn_add = document.querySelector("#btn-create");
 btn_add.addEventListener("click", onCreateProduct);
 
+getCurrency.addEventListener("change", uploadCurrency);
+
 // MAIN ===================================================================
 // saveProduct();
 
-dataRoading();
+dataLoading();
 renderProducts();
