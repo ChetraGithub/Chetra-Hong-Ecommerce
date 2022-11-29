@@ -1,6 +1,6 @@
 // DOM ELEMENTS ===========================================================
 const dom_dialog = document.querySelector("#dialog");
-let dom_display_product = document.querySelector("#display-product");
+let dom_container = document.querySelector("#container");
 
 // VARIABLES ==============================================================
 let getName = document.querySelector("#pdt-name");
@@ -17,11 +17,23 @@ let products = [{name: "Mac Book Pro 2022", type: "MSI",price: 1999.99, discript
                 {name: "TUF Gaming Pro 2022", type: "MSI",price: 1020, discription: "12G SSD, 520G SSD",comment: "From China",image: "C/"}];
 
 // FUNCTIONS ==============================================================
+// Save data to local storage ---------------------------------------------
+function saveProduct() {
+    localStorage.setItem("products", JSON.stringify(products));
+}
+
+// Get local data to update -----------------------------------------------
+function dataRoading() {
+    let localData = JSON.parse(localStorage.getItem("products"));
+    if (localData != null) {
+        products = localData;
+    }
+    console.log(localData)
+}
 // Show dialog ------------------------------------------------------------
 function onShow(event) {
     dom_dialog.style.display = "block";
 }
-
 // Hide dialog ------------------------------------------------------------
 function onHide(event) {
     dom_dialog.style.display = "none";
@@ -40,18 +52,27 @@ function createProduct() {
         product.image = getImage.value;
     
         products.push(product);
+        renderProducts();
+        onHide();
     }
     else {
         window.alert("Please fill all the fields!");
     }
+    saveProduct();
 }
-renderProducts();
 
 // Render products --------------------------------------------------------
 function renderProducts() {
-    numberOfProduct += 1;
+    // Remove old parent
+    document.querySelector("#display-product").remove();
 
+    let display_product = document.createElement("div");
+    display_product.id = "display-product";
+
+    numberOfProduct = 0;
     for (let i = 0; i < products.length; i++) {
+        numberOfProduct += 1;
+
         let item = document.createElement("div");
         item.className = "item";
     
@@ -94,9 +115,10 @@ function renderProducts() {
         item.appendChild(modify);
 
         // Add to Dom Display
-        dom_display_product.appendChild(item)
-        console.log(item)
+        display_product.appendChild(item)
     };
+
+    dom_container.appendChild(display_product)
 }
 
 // ADD EVENTS =============================================================
@@ -108,3 +130,9 @@ btn_cancel.addEventListener("click", onHide);
 
 const btn_add = document.querySelector("#btn-create");
 btn_add.addEventListener("click", createProduct);
+
+// MAIN ===================================================================
+dataRoading();
+renderProducts();
+
+// saveProduct();
