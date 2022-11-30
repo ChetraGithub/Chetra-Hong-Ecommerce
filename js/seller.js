@@ -3,9 +3,10 @@ const dom_dialog = document.querySelector("#dialog");
 let dom_container = document.querySelector("#container");
 
 // DATABASE ===============================================================
-let products = [{ name: "Mac Book Pro 2022", type: "Apple", price: 1999.99, currency: "$", description: "12G Ram, 1TB M1", comment: "From China", image: "C/", rating: 5 },
-{ name: "MSI T 450", type: "MSI", price: 750, currency: "$", description: "16G Ram, 2TB SSD", comment: "From China", image: "C/", rating: 3 },
-{ name: "TUF Gaming Pro 2022", type: "MSI", price: 2000000, currency: "៛", description: "12G SSD, 520G SSD", comment: "From China", image: "C/", rating: 4 }];
+let products = [{ name: "Mac Book Pro 2022", type: "Apple", price: 1999.99, currency: "$", description: "12G Ram, 1TB M1", comment: "From China", image: "images/01.jpeg", rating: {user: 1000, star: 5} },
+{ name: "MSI T 450", type: "MSI", price: 750, currency: "$", description: "16G Ram, 2TB SSD", comment: "From China", image: "images/02.png", rating: {user: 50, star: 3}},
+{ name: "MSI T 450", type: "MSI", price: 750, currency: "$", description: "16G Ram, 2TB SSD", comment: "From China", image: "images/02.png", rating: {user: 50, star: 3}},
+{ name: "TUF Gaming Pro 2022", type: "MSI", price: 200000, currency: "៛", description: "12G SSD, 520G SSD", comment: "From China", image: "images/03.png", rating: {user: 100, star: 2} }];
 
 // VARIABLES ==============================================================
 const imageFile = document.querySelector('#pdt-image');
@@ -55,10 +56,6 @@ function onCreateProduct() {
     if (!(checkDataField)) {
         window.alert("Please fill all the fields!");
     }
-    else if (priceSell === 0) {
-        // check if priceSell eqaul 0 , user don't choose currency
-        window.alert("You forgot to choose Currency !!!");
-    }
     else if (sellerPrice > priceSell) {
         window.alert("Your price is maximum !!!");
     }
@@ -66,12 +63,12 @@ function onCreateProduct() {
         let product = {};
         product.name = getName.value;
         product.type = getType.value;
-        product.price = parseInt(getPrice.value);
+        product.price = parseFloat(getPrice.value);
         product.currency = getCurrency.value;
         product.description = getDescription.value;
         product.comment = getComment.value;
         product.image = getImage.value;
-        product.rating = 0;
+        product.rating = {user: 0, star: 0};
 
         // Add product to list
         products.splice(indexOfProduct, 0, product);
@@ -173,7 +170,7 @@ function renderProducts() {
 
         let price = document.createElement("span");
         price.id = "price";
-        price.textContent = product.price + " " + product.currency;
+        price.textContent = product.price + product.currency;
 
         let description = document.createElement("span");
         description.id = "description";
@@ -201,10 +198,10 @@ function renderProducts() {
         item.appendChild(modify);
 
         // Add to Dom Display
-        display_product.appendChild(item)
+        display_product.appendChild(item);
     };
 
-    dom_container.appendChild(display_product)
+    dom_container.appendChild(display_product);
 
     saveProduct();
 }

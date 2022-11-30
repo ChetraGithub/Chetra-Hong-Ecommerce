@@ -4,6 +4,7 @@
 }
 body {
     font-family: sans-serif;
+    background: rgba(230, 230, 230, 0.781);
 }
 
 nav {
@@ -11,8 +12,7 @@ nav {
     display: flex;
     position: sticky;
     top: 0;
-    background: rgb(230, 230, 230);
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    background: white;
 }
 
 .nav-left, .nav-center, .nav-right {
