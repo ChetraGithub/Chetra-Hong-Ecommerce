@@ -26,8 +26,10 @@ function renderProducts() {
         rating.className = "rating";
 
         for (let j = 0; j < product.rating.star; j++) {
-            let star = document.createElement("span");
-            star.textContent = "#";
+            let star = document.createElement("i");
+            star.className = "fa fa-star";
+            star.ariaHidden = "true";
+            // star.textContent = "#";
             rating.appendChild(star);
         }
 
@@ -85,4 +87,4 @@ let searchInput = document.querySelector("#search");
 searchInput.addEventListener("keyup", searchProducts);
 
 // MAIN ===================================================================
-renderProducts()
+renderProducts();

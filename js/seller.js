@@ -3,10 +3,10 @@ const dom_dialog = document.querySelector("#dialog");
 let dom_container = document.querySelector("#container");
 
 // DATABASE ===============================================================
-let products = [{ name: "Mac Book Pro 2022", type: "Apple", price: 1999.99, currency: "$", description: "12G Ram, 1TB M1", comment: "From China", image: "images/01.jpeg", rating: {user: 1000, star: 5} },
+let products = [{ name: "Mac Book Pro 2022", type: "Apple", price: 1999.99, currency: "$", description: "12G Ram, 1TB M1", comment: "From China", image: "images/01.jpeg", rating: {user: 1000, star: 5}},
 { name: "MSI T 450", type: "MSI", price: 750, currency: "$", description: "16G Ram, 2TB SSD", comment: "From China", image: "images/02.png", rating: {user: 50, star: 3}},
 { name: "MSI T 450", type: "MSI", price: 750, currency: "$", description: "16G Ram, 2TB SSD", comment: "From China", image: "images/02.png", rating: {user: 50, star: 3}},
-{ name: "TUF Gaming Pro 2022", type: "MSI", price: 200000, currency: "៛", description: "12G SSD, 520G SSD", comment: "From China", image: "images/03.png", rating: {user: 100, star: 2} }];
+{ name: "TUF Gaming Pro 2022", type: "MSI", price: 200000, currency: "៛", description: "12G SSD, 520G SSD", comment: "From China", image: "images/03.png", rating: {user: 100, star: 2}}];
 
 // VARIABLES ==============================================================
 const imageFile = document.querySelector('#pdt-image');
@@ -23,6 +23,7 @@ let indexOfProduct = products.length;
 let priceSell = 0;
 let canDollar = 4000;
 let canRiels = 16000000;
+let imageURL = "";
 
 // FUNCTIONS ==============================================================
 // Save data to local storage ---------------------------------------------
@@ -43,12 +44,12 @@ function onShow(event) {
     dom_dialog.style.display = "block";
 }
 
-// Hide dialog ------------------------------------------------------------
+// Hide dialog --------------------------------------------------------------
 function onHide(event) {
     dom_dialog.style.display = "none";
 }
 
-// On btn create products --------------------------------------------------------
+// On create products --------------------------------------------------------
 function onCreateProduct() {
     let sellerPrice = parseInt(getPrice.value);
     let checkDataField = getName.value && getType.value && getPrice.value && getDescription.value && getComment.value && getImage.value;
@@ -67,7 +68,7 @@ function onCreateProduct() {
         product.currency = getCurrency.value;
         product.description = getDescription.value;
         product.comment = getComment.value;
-        product.image = getImage.value;
+        product.image = imageURL;
         product.rating = {user: 0, star: 0};
 
         // Add product to list
@@ -76,7 +77,7 @@ function onCreateProduct() {
         onHide();
         renderProducts();
     }
-
+    console.log(imageURL);
 }
 // On btn cancel ----------------------------------------------------------
 function onCancel(event) {
@@ -92,7 +93,7 @@ function removeProduct(event) {
     renderProducts();
 }
 
-// Add product ---------------------------------------------------------
+// Add product -----------------------------------------------------------
 function addProduct(event) {
     onShow();
     getName.value = ""
@@ -223,6 +224,15 @@ function uploadCurrency() {
     getPrice.placeholder = priceSell + sign + " Down";
 }
 
+// Upload Image -----------------------------------------------------------
+function uploadImage(element) {
+    let file = element.files[0];
+    let reader = new FileReader();
+    reader.onloadend = function() {
+        imageURL = reader.result;
+    }
+    reader.readAsDataURL(file);
+}
 
 // ADD EVENTS =============================================================
 const btn_create = document.querySelector("#create");
@@ -236,6 +246,9 @@ btn_add.addEventListener("click", onCreateProduct);
 
 getCurrency.addEventListener("change", uploadCurrency);
 
+getImage.addEventListener('change', function(event) {
+    uploadImage(this);
+});
 // MAIN ===================================================================
 // saveProduct();
 
