@@ -53,6 +53,10 @@
     transform: scale(1.01);
 }
 
+.item > a {
+    text-decoration: none;
+}
+
 .rating {
     height: 8%;
     display: flex;
@@ -81,5 +85,6 @@
 } 
 
 #price {
+    color: black;
     font-weight: bold;
 }

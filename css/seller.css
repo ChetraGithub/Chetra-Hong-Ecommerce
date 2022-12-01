@@ -88,20 +88,8 @@
     display: flex;
     justify-content: right;
 }
-/* message ---------------------------------------------------- */
-#message {
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
-    background: rgba(255, 0, 0, 0.377);
-    display: none;
-}
 
 /* dialog ----------------------------------------------------- */
-
 #dialog {
     height: 100vh;
     width: 100%;
@@ -110,7 +98,10 @@
     left: 0;
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.75);
-    /* display: none; */
+}
+
+#dialog {
+    display: none;
 }
 
 /* image show ------------------------------------------------ */

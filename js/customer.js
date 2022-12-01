@@ -1,12 +1,11 @@
 // DOM ELEMENTS ===========================================================
 let dom_container = document.querySelector("#container");
-// let dom_product_display = document.querySelector("#product-display");
 
 // DATABASE ===============================================================
 let products = JSON.parse(localStorage.getItem("products"));
 
 // VARIABLES ==============================================================
-// let searchInput = document.querySelector("#search");
+
 
 // FUNCTIONS ==============================================================
 // Display the products ---------------------------------------------------
@@ -16,11 +15,16 @@ function renderProducts() {
     let dom_product_display = document.createElement("div");
     dom_product_display.id = "product-display";
 
-    for (let i = 0; i < products.length; i++) {
-        let product = products[i];
+    for (let index = 0; index < products.length; index++) {
+        let product = products[index];
 
         let item = document.createElement("div");
         item.className = "item";
+        item.dataset.index = index;
+        item.addEventListener("click", getProductIndex)
+
+        let a = document.createElement("a");
+        a.href = "pages/detail.html"
 
         let rating = document.createElement("div");
         rating.className = "rating";
@@ -29,7 +33,6 @@ function renderProducts() {
             let star = document.createElement("i");
             star.className = "fa fa-star";
             star.ariaHidden = "true";
-            // star.textContent = "#";
             rating.appendChild(star);
         }
 
@@ -55,14 +58,21 @@ function renderProducts() {
         price.textContent = product.price + product.currency;
         detail.appendChild(price);
 
-        item.appendChild(rating);
-        item.appendChild(image);
-        item.appendChild(detail);
+        a.appendChild(rating);
+        a.appendChild(image);
+        a.appendChild(detail);
+
+        item.appendChild(a)
 
         dom_product_display.appendChild(item);
-        // console.log(product.image)
     }
     dom_container.appendChild(dom_product_display);
+}
+
+// Get product location ---------------------------------------------------
+function getProductIndex(event) {
+    let index = event.currentTarget.dataset.index;
+    localStorage.setItem("productIndex", JSON.stringify(index));
 }
 
 // User search products ---------------------------------------------------
@@ -70,7 +80,7 @@ function searchProducts() {
     let items = document.querySelectorAll(".item");
     for (let i = 0; i < items.length; i++) {
         let item = items[i];
-        let name = item.lastChild.firstChild.textContent.toLocaleLowerCase();
+        let name = item.firstChild.lastChild.firstChild.textContent.toLocaleLowerCase();
         let inputText = searchInput.value.toLocaleLowerCase();
 
         if (name.includes(inputText)) {
