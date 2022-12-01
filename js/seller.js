@@ -149,7 +149,6 @@ function addProduct(event) {
     getPrice.placeholder = "Choose currency";
 
     indexOfProduct = products.length;
-    // console.log(products);
 }
 
 // Render products --------------------------------------------------------

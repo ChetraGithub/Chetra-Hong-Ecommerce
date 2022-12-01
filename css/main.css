@@ -51,6 +51,6 @@ nav {
     margin-left: 12px;
 }
 
-#active {
+.active {
     color: blue;
 }

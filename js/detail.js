@@ -45,6 +45,6 @@ add_cart.addEventListener("click", getProduct);
 let my_cart = document.querySelector("#my-cart");
 
 // MAIN ===================================================================
-saveData();
+// saveData();
 
 loadData();

@@ -1,0 +1,71 @@
+.container {
+    height: auto;
+    margin: 50px 100px;
+}
+
+#menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+#shopping {
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+#on-buy {
+    padding: 12px 40px;
+    border-radius: 20px;
+    border: none;
+    background: blue;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+#list {
+    height: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.item {
+    height: 30vh;
+    border-radius: 20px;
+    background: white;
+    overflow: hidden;
+}
+
+#close {
+    height: 25%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: blue;
+}
+
+#close > i {
+    margin-right: 20px;
+    color: white;
+    font-size: 1.5rem;
+}
+
+#close > i:hover {
+    color: rgb(255, 29, 29);
+}
+
+.details {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#price {
+    font-weight: bold;
+}

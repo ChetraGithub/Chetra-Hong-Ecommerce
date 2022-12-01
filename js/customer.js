@@ -38,7 +38,7 @@ function renderProducts() {
         hideBrand.textContent = product.type;
 
         let a = document.createElement("a");
-        a.href = "pages/detail.html"
+        a.href = "pages/detail.html";
 
         let rating = document.createElement("div");
         rating.className = "rating";
@@ -96,7 +96,7 @@ function getProductByBrand() {
     for (let i = 0; i < items.length; i++) {
         let item = items[i];
         let typeOfProduct = item.firstChild.textContent.toLowerCase();
-        let userType = type.value.toLowerCase();
+        let userType = brand_choose.value.toLowerCase();
         if (typeOfProduct.includes(userType) || userType == "other...") {
             show(item);
         }
@@ -127,8 +127,8 @@ function searchProducts() {
 let searchInput = document.querySelector("#search");
 searchInput.addEventListener("keyup", searchProducts);
 
-let type = document.querySelector("#by-brand");
-type.addEventListener("change", getProductByBrand);
+let brand_choose = document.querySelector("#by-brand");
+brand_choose.addEventListener("change", getProductByBrand);
 
 // MAIN ===================================================================
 renderProducts();
