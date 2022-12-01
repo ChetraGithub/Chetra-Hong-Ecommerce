@@ -10,25 +10,30 @@
     align-items: center;
 }
 
-.search {
+.find {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+}
+#by-brand, #search {
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    border: 2px solid rgb(133, 132, 132);
+
 }
 
+
 #search {
-    width: 30%;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 20px;
-    border: 2px solid rgb(133, 132, 132);
-    outline: none;
+    width: 20%;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
 
 #search:hover{
-    width: 100%;
+    width: 50%;
     border: 2px solid rgb(66, 66, 66);
 
 }
@@ -51,6 +56,10 @@
 .item:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transform: scale(1.01);
+}
+
+#hide-brand {
+    /* display: none; */
 }
 
 .item > a {

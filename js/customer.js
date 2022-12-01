@@ -8,6 +8,16 @@ let products = JSON.parse(localStorage.getItem("products"));
 
 
 // FUNCTIONS ==============================================================
+// Show item --------------------------------------------------------------
+function show(element) {
+    element.style.display = "block";
+}
+
+// Hide item --------------------------------------------------------------
+function hide(element) {
+    element.style.display = "none";
+}
+
 // Display the products ---------------------------------------------------
 function renderProducts() {
     document.querySelector("#product-display").remove();
@@ -22,6 +32,10 @@ function renderProducts() {
         item.className = "item";
         item.dataset.index = index;
         item.addEventListener("click", getProductIndex)
+
+        let hideBrand = document.createElement("span");
+        hideBrand.id = "hide-brand";
+        hideBrand.textContent = product.type;
 
         let a = document.createElement("a");
         a.href = "pages/detail.html"
@@ -62,6 +76,7 @@ function renderProducts() {
         a.appendChild(image);
         a.appendChild(detail);
 
+        item.appendChild(hideBrand);
         item.appendChild(a)
 
         dom_product_display.appendChild(item);
@@ -75,12 +90,28 @@ function getProductIndex(event) {
     localStorage.setItem("productIndex", JSON.stringify(index));
 }
 
+// User choose brand name -------------------------------------------------
+function getProductByBrand() {
+    let items = document.querySelectorAll(".item");
+    for (let i = 0; i < items.length; i++) {
+        let item = items[i];
+        let typeOfProduct = item.firstChild.textContent.toLowerCase();
+        let userType = type.value.toLowerCase();
+        if (typeOfProduct.includes(userType) || userType == "other...") {
+            show(item);
+        }
+        else {
+            item.style.display = "none";
+        }
+    }
+}
+
 // User search products ---------------------------------------------------
 function searchProducts() {
     let items = document.querySelectorAll(".item");
     for (let i = 0; i < items.length; i++) {
         let item = items[i];
-        let name = item.firstChild.lastChild.firstChild.textContent.toLocaleLowerCase();
+        let name = item.lastChild.lastChild.firstChild.textContent.toLocaleLowerCase();
         let inputText = searchInput.value.toLocaleLowerCase();
 
         if (name.includes(inputText)) {
@@ -95,6 +126,9 @@ function searchProducts() {
 // ADD EVENTS =============================================================
 let searchInput = document.querySelector("#search");
 searchInput.addEventListener("keyup", searchProducts);
+
+let type = document.querySelector("#by-brand");
+type.addEventListener("change", getProductByBrand);
 
 // MAIN ===================================================================
 renderProducts();

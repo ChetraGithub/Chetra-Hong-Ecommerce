@@ -30,12 +30,12 @@ let imageURL = "";
 
 // FUNCTIONS ==============================================================
 // Save data to local storage ---------------------------------------------
-function saveProduct() {
+function saveData() {
     localStorage.setItem("products", JSON.stringify(products));
 }
 
 // Get local data to update -----------------------------------------------
-function dataLoading() {
+function loadData() {
     let localData = JSON.parse(localStorage.getItem("products"));
     if (localData != null) {
         products = localData;
@@ -51,7 +51,6 @@ function onShow(element) {
 function onHide(element) {
     element.style.display = "none";
 }
-console.log(products);
 // On create products --------------------------------------------------------
 function onCreateProduct() {
     let sellerPrice = parseInt(getPrice.value);
@@ -115,6 +114,10 @@ function updateProduct(event) {
     getComment.value = product.comment;
     imageFile.value = "";
 
+    if (product.image) {
+        imageURL = product.image;
+    }
+    
     // Delete old product
     products.splice(index, 1);
     onShow(dom_dialog);
@@ -137,7 +140,7 @@ function addProduct(event) {
     getCurrency.value = "";
     getDescription.value = "";
     getComment.value = "";
-    imageFile.value = "";
+    // imageFile.value = "";
     canSell = 0;
 
     titleForm.textContent = "Create a Product";
@@ -146,6 +149,7 @@ function addProduct(event) {
     getPrice.placeholder = "Choose currency";
 
     indexOfProduct = products.length;
+    // console.log(products);
 }
 
 // Render products --------------------------------------------------------
@@ -217,7 +221,7 @@ function renderProducts() {
 
     dom_container.appendChild(display_product);
 
-    saveProduct();
+    saveData();
 }
 
 // Change currency
@@ -266,5 +270,5 @@ getImage.addEventListener("change", function(event) {
 // MAIN ===================================================================
 // saveProduct();
 
-dataLoading();
+loadData();
 renderProducts();
