@@ -25,7 +25,7 @@ let numberOfProduct = 0;
 let indexOfProduct = products.length;
 let canSell = 0;
 let canDollar = 4000;
-let canRiels = 16000000;
+let maxRielsAmount = 16000000;
 let imageURL = "";
 
 // FUNCTIONS ==============================================================
@@ -59,15 +59,15 @@ function onCreateProduct() {
     if (!(checkDataField)) {
         for(let fild of listOfField) {
             if (! (fild.value)) {
-                fild.style.border = "2px solid red";
+                fild.style.border = "1px solid red";
             }
             else {
-                fild.style.border = "2px solid black";
+                fild.style.border = "1px solid black";
             }
         };
     }
     else if (sellerPrice > canSell) {
-        getPrice.style.border = "2px solid red";
+        getPrice.style.border = "1px solid red";
     }
     else {
         let product = {};
@@ -93,7 +93,7 @@ function onCancel(event) {
     products = JSON.parse(localStorage.getItem("products"));
     onHide(dom_dialog);
     for(let fild of listOfField) {
-        fild.style.border = "2px solid black";
+        fild.style.border = "1px solid gray";
     };
 }
 
@@ -145,8 +145,6 @@ function addProduct(event) {
 
     titleForm.textContent = "Create a Product";
     btn_add.textContent = "Create";
-
-    getPrice.placeholder = "Choose currency";
 
     indexOfProduct = products.length;
 }
@@ -232,7 +230,7 @@ function uploadCurrency() {
         sign = "$";
     }
     else if (currency === "៛") {
-        canSell = canRiels;
+        canSell = maxRielsAmount;
     }
     else {
         canSell = 0;

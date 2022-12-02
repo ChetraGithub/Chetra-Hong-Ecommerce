@@ -1,6 +1,6 @@
 // DATA ==================================================================
 let userData = [];
-let products = JSON.parse(localStorage.getItem("products"))
+let products = JSON.parse(localStorage.getItem("products"));
 
 let indexOfProduct = JSON.parse(localStorage.getItem("productIndex"));
 

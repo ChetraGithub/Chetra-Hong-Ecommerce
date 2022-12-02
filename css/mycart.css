@@ -69,3 +69,61 @@
 #price {
     font-weight: bold;
 }
+
+/* Check out shopping ------------------------------------------ */
+#chek-out {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;  
+}
+
+.form-container {
+    height: auto;
+    width: 60%;
+    padding: 20px;
+    background: white;
+}
+
+.form-container > form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#title {
+    font-size: 1.4rem;
+    padding: 8px;
+    border-bottom: 1px solid gray;
+}
+
+.form-container > form > input {
+    padding: 10px;
+    outline: none;
+    border: 1px solid gray;
+    font-size: 1rem;
+}
+
+.form-container > button {
+    padding: 12px;
+    width: 130px;
+    margin-top: 10px;
+    border-radius: 20px;
+    background: white;
+    border: 1px solid red;
+    color: red;
+    font-size: 1rem;
+}
+
+#add {
+    color: white;
+    background:  rgb(37, 103, 224);
+    border: 1px solid rgb(52, 119, 241);
+}
