@@ -6,6 +6,8 @@ let indexOfProduct = JSON.parse(localStorage.getItem("productIndex"));
 
 let product = products[indexOfProduct];
 
+
+let rating = document.querySelector("#rating");
 // Display details products -----------------------------------------------
 document.querySelector("#img").src = product.image;
 document.querySelector("#name").textContent = product.name;
@@ -29,7 +31,6 @@ function loadData() {
 }
 
 // Get user add cart ------------------------------------------------------
-
 function getProduct() {
     userData.push(product);
     saveData();
@@ -38,6 +39,16 @@ function getProduct() {
     document.querySelector("#tolal-cart").style.fontWeight = "bold";
 }
 
+function showRating() {
+    let numberOfStar = product.rating.star;
+    for (let i = 0; i < numberOfStar; i++) {
+        let i = document.createElement("i");
+        i.className = "fa fa-star";
+        i.ariaHidden = "true";
+        rating.appendChild(i);
+    }
+    // console.log(numberOfStar);
+}
 // ADD EVENTS =============================================================
 const add_cart = document.querySelector("#buy");
 add_cart.addEventListener("click", getProduct);
@@ -48,3 +59,4 @@ let my_cart = document.querySelector("#my-cart");
 // saveData();
 
 loadData();
+showRating();

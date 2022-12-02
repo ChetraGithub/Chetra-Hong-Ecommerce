@@ -21,12 +21,13 @@ let getComment = document.querySelector("#pdt-comment");
 let getImage = document.querySelector("#pdt-image");
 let titleForm = document.querySelector("#form-title");
 let listOfField = [getName, getType, getPrice, getCurrency, getDescription, getComment]
-let numberOfProduct = 0;
 let indexOfProduct = products.length;
-let canSell = 0;
-let canDollar = 4000;
 let maxRielsAmount = 16000000;
+let maxDollarAmount = 4000;
+let numberOfProduct = 0;
+let canSell = 0;
 let imageURL = "";
+let getRating = {};
 
 // FUNCTIONS ==============================================================
 // Save data to local storage ---------------------------------------------
@@ -51,8 +52,10 @@ function onShow(element) {
 function onHide(element) {
     element.style.display = "none";
 }
+
+
 // On create products --------------------------------------------------------
-function onCreateProduct() {
+function uploadProduct() {
     let sellerPrice = parseInt(getPrice.value);
     let checkDataField = getName.value && getType.value && getPrice.value && getDescription.value && getComment.value;
 
@@ -78,7 +81,7 @@ function onCreateProduct() {
         product.description = getDescription.value;
         product.comment = getComment.value;
         product.image = imageURL;
-        product.rating = {user: 0, star: 0};
+        product.rating = getRating;
 
         // Add product to list
         products.splice(indexOfProduct, 0, product);
@@ -88,17 +91,26 @@ function onCreateProduct() {
     }
 }
 
-// On btn cancel ----------------------------------------------------------
-function onCancel(event) {
-    products = JSON.parse(localStorage.getItem("products"));
-    onHide(dom_dialog);
-    for(let fild of listOfField) {
-        fild.style.border = "1px solid gray";
-    };
+// Create product ----------------------------------------------------------
+function onCreateProduct(event) {
+    onShow(dom_dialog);
+    getName.value = ""
+    getType.value = "";
+    getPrice.value = "";
+    getCurrency.value = "";
+    getDescription.value = "";
+    getComment.value = "";
+    // imageFile.value = "";
+    canSell = 0;
+
+    titleForm.textContent = "Create a Product";
+    btn_add.textContent = "Create";
+
+    indexOfProduct = products.length;
 }
 
 // Update product ---------------------------------------------------------
-function updateProduct(event) {
+function onUpdateProduct(event) {
     let index = event.target.parentElement.parentElement.dataset.index;
     let product = products[index];
 
@@ -124,29 +136,20 @@ function updateProduct(event) {
 }
 
 // Remove product ---------------------------------------------------------
-function removeProduct(event) {
+function onRemoveProduct(event) {
     let index = event.target.parentElement.parentElement.dataset.index;
     products.splice(index, 1);
 
     renderProducts();
 }
 
-// Add product -----------------------------------------------------------
-function addProduct(event) {
-    onShow(dom_dialog);
-    getName.value = ""
-    getType.value = "";
-    getPrice.value = "";
-    getCurrency.value = "";
-    getDescription.value = "";
-    getComment.value = "";
-    // imageFile.value = "";
-    canSell = 0;
-
-    titleForm.textContent = "Create a Product";
-    btn_add.textContent = "Create";
-
-    indexOfProduct = products.length;
+// On btn cancel ----------------------------------------------------------
+function onCancel(event) {
+    products = JSON.parse(localStorage.getItem("products"));
+    onHide(dom_dialog);
+    for(let fild of listOfField) {
+        fild.style.border = "1px solid gray";
+    };
 }
 
 // Render products --------------------------------------------------------
@@ -196,12 +199,18 @@ function renderProducts() {
 
         let btn_edit = document.createElement("img");
         btn_edit.src = "../images/edit.png";
-        btn_edit.addEventListener('click', updateProduct);
+        btn_edit.dataset.index = index;
+        btn_edit.addEventListener('click', function (event) {
+            let index = parseInt(event.target.dataset.index);
+            let rating = products[index].rating;
+            uploadRating(rating.user, rating.star);
+            onUpdateProduct(event);
+        });
         modify.appendChild(btn_edit);
 
         let btn_delete = document.createElement("img");
         btn_delete.src = "../images/delete.png";
-        btn_delete.addEventListener('click', removeProduct);
+        btn_delete.addEventListener('click', onRemoveProduct);
         modify.appendChild(btn_delete);
 
         // Add to item
@@ -221,12 +230,20 @@ function renderProducts() {
     saveData();
 }
 
-// Change currency
+// Change currency --------------------------------------------------------
+function uploadRating(user, star) {
+    getRating = {
+        user: user,
+        star: star,
+    };
+}
+
+// Change currency --------------------------------------------------------
 function uploadCurrency() {
     let currency = getCurrency.value;
     let sign = "៛";
     if (currency === "$") {
-        canSell = canDollar;
+        canSell = maxDollarAmount;
         sign = "$";
     }
     else if (currency === "៛") {
@@ -250,13 +267,16 @@ function uploadImage(element) {
 
 // ADD EVENTS =============================================================
 const btn_create = document.querySelector("#create");
-btn_create.addEventListener("click", addProduct);
+btn_create.addEventListener("click", function() {
+    uploadRating(0, 0);
+    onCreateProduct();
+});
 
 const btn_cancel = document.querySelector("#btn-cancel");
 btn_cancel.addEventListener("click", onCancel);
 
 let btn_add = document.querySelector("#btn-create");
-btn_add.addEventListener("click", onCreateProduct);
+btn_add.addEventListener("click", uploadProduct);
 
 getCurrency.addEventListener("change", uploadCurrency);
 
@@ -265,7 +285,7 @@ getImage.addEventListener("change", function(event) {
 });
 
 // MAIN ===================================================================
-// saveProduct();
+// saveData();
 
 loadData();
 renderProducts();
