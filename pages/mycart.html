@@ -17,7 +17,7 @@
             <a href="seller.html" class="link-seller link">SELLER</a>
         </div>
         <div class="nav-center">
-            <a href="../index.html" class="link">CHETRA COMPUTER</a>
+            <a href="../index.html">CHETRA COMPUTER</a>
         </div>
         <div class="nav-right">
             <a href="#" class="link active" id="tolal-cart">
@@ -41,7 +41,23 @@
                 <input id="mobile" type="text" placeholder="Mobile number">
             </form>
             <button id="cancel">Cancel</button>
-            <button id="add">Add</button>
+            <button id="add" class="btn-active">Add</button>
+        </div>
+    </div>
+
+    <div id="credit-card">
+        <div class="form-container">
+            <form>
+                <span id="title">Payment Details</span>
+                <label for="card-number">CARD NUMBER</label>
+                <input id="card-number" type="text" placeholder="Enter 16 digits">
+                <label for="card-name">CARD NAME</label>
+                <input id="card-name" type="text" placeholder="Enter full name">
+                <label for="card-expiration">EXPIRATION</label>
+                <input id="card-expiration" type="month">
+            </form>
+            <button id="cancel-pay">Cancel</button>
+            <button id="pay" class="btn-active">Pay Now</button>
         </div>
     </div>
 

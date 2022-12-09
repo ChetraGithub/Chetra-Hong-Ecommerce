@@ -42,6 +42,10 @@ function renderProducts() {
 
         let rating = document.createElement("div");
         rating.className = "rating";
+        
+        let peopleStar = document.createElement("span");
+        peopleStar.textContent = product.rating.user;
+        rating.appendChild(peopleStar);
 
         for (let j = 0; j < product.rating.star; j++) {
             let star = document.createElement("i");

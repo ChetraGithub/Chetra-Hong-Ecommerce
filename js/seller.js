@@ -45,7 +45,7 @@ function loadData() {
 
 // Show dialog ------------------------------------------------------------
 function onShow(element) {
-    element.style.display = "block";
+    element.style.display = "flex";
 }
 
 // Hide dialog --------------------------------------------------------------
@@ -59,17 +59,22 @@ function uploadProduct() {
     let sellerPrice = parseInt(getPrice.value);
     let checkDataField = getName.value && getType.value && getPrice.value && getDescription.value && getComment.value;
 
+    let maxSell = 4000;
+    if (getCurrency.value == "៛") {
+        maxSell = 16000000;
+    } 
+
     if (!(checkDataField)) {
         for(let fild of listOfField) {
             if (! (fild.value)) {
                 fild.style.border = "1px solid red";
             }
             else {
-                fild.style.border = "1px solid black";
+                fild.style.border = "1px solid gray";
             }
         };
     }
-    else if (sellerPrice > canSell) {
+    else if (sellerPrice > maxSell) {
         getPrice.style.border = "1px solid red";
     }
     else {
@@ -105,6 +110,8 @@ function onCreateProduct(event) {
 
     titleForm.textContent = "Create a Product";
     btn_add.textContent = "Create";
+
+    getPrice.placeholder = "Enter price";
 
     indexOfProduct = products.length;
 }
@@ -150,6 +157,7 @@ function onCancel(event) {
     for(let fild of listOfField) {
         fild.style.border = "1px solid gray";
     };
+    getPrice.placeholder = "Enter price";
 }
 
 // Render products --------------------------------------------------------

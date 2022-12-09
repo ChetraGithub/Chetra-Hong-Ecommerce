@@ -102,6 +102,9 @@
 
 #dialog {
     display: none;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
 }
 
 /* image show ------------------------------------------------ */
@@ -115,7 +118,7 @@
     width: 40%;
     margin: auto;
     padding: 20px;
-    margin-top: 50px;
+    border-radius: 20px;
     background: white;
 }
 
@@ -123,9 +126,13 @@
     margin-top: 15px;
 }
 
+.form-group {
+    margin-top: 12px;
+}
 
-.form-group > label, .add-left > label, .add-right > label {
-    display: none;
+.choose {
+    margin-top: 18px;
+    margin-bottom: 30px;
 }
 
 .two-col {
@@ -137,7 +144,6 @@
 
 .add-left, .add-right {
     width: 50%;
-    background: red;
     display: flex;
 }
 
@@ -147,6 +153,8 @@
     box-sizing: border-box;
     outline: none;
     font-size: 1rem;
+    border-radius: 10px;
+    background: white;
     border: 1px solid gray;
 }
 
@@ -158,17 +166,11 @@
     display: none;
 }
 
-#choose {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    background: rgb(190, 190, 190);
-    border: none;
-    color: rgb(49, 48, 48);
-}
-
 #getFor {
-    padding: 10px 100px;
+    padding: 8px;
+    border-radius: 20px;
+    color: white;
+    background: gray;
 }
 
 .btn-group {
@@ -180,7 +182,7 @@
 #btn-cancel, #btn-create {
     padding: 12px 40px;
     font-size: 1rem;
-    border-radius: 20px;
+    border-radius: 10px;
     border: none;
     background:white;
     color: red;

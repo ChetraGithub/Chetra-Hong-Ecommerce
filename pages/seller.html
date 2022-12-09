@@ -17,7 +17,7 @@
             <a href="seller.html" class="link-seller link active">SELLER</a>
         </div>
         <div class="nav-center">
-            <a href="../index.html" class="link">CHETRA COMPUTER</a>
+            <a href="../index.html">CHETRA COMPUTER</a>
         </div>
         <div class="nav-right">
             <a href="#" class="link">LOGIN</a>
@@ -30,11 +30,9 @@
             <form id="imformation">
                 <div class="form-group two-col">
                     <div class="add-left">
-                        <label for="pdt-name">Name :</label><br>
                         <input id="pdt-name" type="text" placeholder="Enter product name...">
                     </div>
                     <div class="add-right">
-                        <label for="pdt-type">Type :</label><br>
                         <select id="pdt-type" name="pdt-type">
                             <option value="" selected disabled>Brand</option>
                             <option value="Apple">Apple</option>
@@ -50,30 +48,25 @@
                 </div>
                 <div class="form-group two-col">
                     <div class="add-left">
-                        <label for="pdt-price">Price :</label><br>
-                        <input id="pdt-price" type="number" placeholder="Enter price">
-                    </div>
-                    <div class="add-right">
-                        <label for="currency">Currency</label>
                         <select name="currency" id="currency">
                             <option value="" selected disabled>Currency</option>
                             <option id="riel" value="៛">Riels</option>
                             <option id="dollar" value="$">Dollar</option>
                         </select>
                     </div>
+                    <div class="add-right">
+                        <input id="pdt-price" type="number" placeholder="Enter price">
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="pdt-description">Descriptions :</label><br>
                     <textarea name="pdt-description" id="pdt-description" placeholder="Enter description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="pdt-comment">Comments :</label><br>
                     <textarea name="pdt-comment" id="pdt-comment" placeholder="Enter comment"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="pdt-image">Image of product :</label><br>
+                <div class="form-group choose">
                     <input type="file" id="pdt-image" accept="image/*">
-                    <button type="button" id="choose"><label id="getFor" for="pdt-image">Choose file</label></button>
+                    <label id="getFor" for="pdt-image">Choose image</label>
                 </div>
                 <div class="btn-group">
                     <button id="btn-cancel" type="button">Cancel</button>

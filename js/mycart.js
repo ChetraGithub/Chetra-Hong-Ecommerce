@@ -1,8 +1,8 @@
 // DATA =============================================================
 let localDataUser = JSON.parse(localStorage.getItem("userData"));
 
-
 // VARIABLES ========================================================
+const credit_card = document.querySelector("#credit-card");
 let dom_container = document.querySelector(".container");
 let chek_out = document.querySelector("#chek-out");
 let get_name = document.querySelector("#get-name");
@@ -13,10 +13,13 @@ let get_city = document.querySelector("#city");
 let get_province = document.querySelector("#province");
 let get_postal = document.querySelector("#postal");
 let get_mobile = document.querySelector("#mobile");
+let card_number = document.querySelector("#card-number");
+let card_name = document.querySelector("#card-name");
+let card_expiration = document.querySelector("#card-expiration");
 let fields = [get_name, get_surname, get_address, get_country, get_city, get_province, get_postal, get_mobile];
+let userCardInfor = [card_number, card_name, card_expiration];
 let dollar = 0;
 let riels = 0;
-
 
 // Get currency riels and dollar
 for (let product of localDataUser) {
@@ -30,12 +33,24 @@ for (let product of localDataUser) {
 };
 
 // FUNCTIONS ========================================================
+// Hide dom element -------------------------------------------------
 function hide(element) {
     element.style.display = "none";
 }
 
+// Show dom element -------------------------------------------------
 function show(element) {
     element.style.display = "flex";
+}
+
+// Set default field border -----------------------------------------
+function fieldDefault(element) {
+    element.style.border = "1px solid gray";
+}
+
+// Set alert field border (red) -------------------------------------
+function fieldWarmming(element) {
+    element.style.border = "1px solid red";
 }
 
 // Dispaly my products ----------------------------------------------
@@ -63,6 +78,13 @@ function displayMyProducts() {
 
         let details = document.createElement("div");
         details.className = "details";
+
+        let laptop = document.createElement("div");
+        laptop.className = "laptop";
+
+        // let image = document.createElement("img");
+        // image.src = product.image;
+        // details.appendChild(image);
 
         let brand = document.createElement("span");
         brand.id = "brand";
@@ -105,39 +127,88 @@ function checkShopping(products){
 }
 
 // Check user input information -------------------------------------
-function alertUserInfor() {
-    let isFiels = true;
+function userCheckOut() {
+    let completeFiels = true;
     for (let field of fields) {
         if (field.value) {
-            field.style.border = "1px solid blue";
+            fieldDefault(field);
         }
         else {
-            field.style.border = "1px solid red";
-            isFiels = false;
+            completeFiels = false;
+            fieldWarmming(field);
         }
     };
 
-    if (isFiels) {
+    if (completeFiels) {
         hide(chek_out);
-        setAlertDefault(fields);
+        checkOutDefault(fields);
+        show(credit_card);
     }
 }
 
 // Set alert default ------------------------------------------------
-function setAlertDefault(fields) {
+function checkOutDefault(fields) {
     for (let field of fields) {
         field.value = "";
-        field.style.border = "1px solid gray";
+        fieldDefault(field);
     };
 }
 
-// Display total price ----------------------------------------------
+//  ----------------------------------------------
+function cardCorection() {
+    // Set default check credit card
+    let checkCard = true;
+    for (let field of userCardInfor) {
+        fieldDefault(field);
+    };
 
+    // Check user not input the values
+    for (let field of userCardInfor) {
+        if (! field.value) {
+            checkCard = false;
+            fieldWarmming(field);
+        }
+    };
+
+    // Check card numbers
+    let numbers = card_number.value;
+    for (let num of numbers) { 
+        let numberInt = parseInt(num);
+
+        let checkValidCardNumber = numberInt.toString() == "NaN" || numbers.length != 16;
+        if (checkValidCardNumber) {
+            checkCard = false;
+            fieldWarmming(card_number);
+        }
+    };
+
+    // Check card expiration
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1;
+    var year = dateObj.getUTCFullYear();
+
+    
+    let cardExpiration = card_expiration.value;
+    let cardYear = parseInt(cardExpiration.slice(0, 4));
+    let cardMonth = parseInt(cardExpiration.slice(5, 7));
+    
+    let checkMonthAndYear = cardYear < year || (cardYear === year && cardMonth < month);
+    if (checkMonthAndYear) {
+        checkCard = false;
+        fieldWarmming(card_expiration);
+    }
+
+    // Credit card corect all
+    if (checkCard) {
+        hide(credit_card);
+        checkOutDefault(userCardInfor);
+    }
+}
 // EVENTS ==========================================================
 const cancel = document.querySelector("#cancel");
 cancel.addEventListener('click', function() {
     hide(chek_out);
-    setAlertDefault(fields);
+    checkOutDefault(fields);
 });
 
 const on_buy = document.querySelector("#on-buy");
@@ -146,7 +217,16 @@ on_buy.addEventListener('click', function() {
 });
 
 const add = document.querySelector("#add");
-add.addEventListener('click', alertUserInfor);
+add.addEventListener('click', userCheckOut);
+
+const btn_pay = document.querySelector("#pay");
+btn_pay.addEventListener('click', cardCorection);
+
+const bth_cancel_pay = document.querySelector("#cancel-pay");
+bth_cancel_pay.addEventListener('click', function() {
+    hide(credit_card);
+    checkOutDefault(userCardInfor);
+});
 
 // MAIN ============================================================
 displayMyProducts();

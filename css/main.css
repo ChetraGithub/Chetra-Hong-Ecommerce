@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 body {
     font-family: sans-serif;
@@ -30,6 +31,12 @@ nav {
 
 .nav-center {
     width: 60%;
+    font-size: 1.3rem;
+}
+
+.nav-center a {
+    color: black;
+    cursor: default;
 }
 
 .nav-right {
@@ -39,7 +46,7 @@ nav {
 }
 
 .link {
-    text-decoration: none;
+    padding-bottom: 8px;
     color: black;
 }
 
@@ -53,4 +60,5 @@ nav {
 
 .active {
     color: blue;
+    border-bottom: 2px solid blue;
 }
