@@ -38,7 +38,7 @@ function fieldDefault(element) {
 }
 
 // Set alert field border (red) -------------------------------------
-function fieldWarmming(element) {
+function fieldWarning(element) {
     element.style.border = "1px solid red";
 }
 
@@ -139,7 +139,7 @@ function userCheckOut() {
         }
         else {
             completeFiels = false;
-            fieldWarmming(field);
+            fieldWarning(field);
         }
     };
 
@@ -159,7 +159,7 @@ function checkOutDefault(fields) {
 }
 
 // Set credit card fields --------------------------------------------
-function setDefaultCardFields(fields) {
+function setDefaultBoderColor(fields) {
     for (let field of fields) {
         fieldDefault(field);
     };
@@ -176,7 +176,7 @@ function checkCardDigits(numbers) {
 
         let checkValidCardNumber = numberInt.toString() == "NaN" || numbers.length != 16;
         if (checkValidCardNumber) {
-            fieldWarmming(card_digits);
+            fieldWarning(card_digits);
             correction = false;
         }
     };
@@ -198,7 +198,7 @@ function checkExpiration(month, year) {
     let checkMonthAndYear = year < now_year || (year === now_year && month < now_month);
     if (checkMonthAndYear) {
         correction = false;
-        fieldWarmming(card_expiration);
+        fieldWarning(card_expiration);
     }
 
     return correction;
@@ -206,17 +206,17 @@ function checkExpiration(month, year) {
 
 // Validate credit card ----------------------------------------------
 function validateCreditCard() {
-    // Condition check correction information
+    // Condition check correction information card
     let checkCard = true;
 
-    // Set default card fields
-    setDefaultCardFields(creditCardFields);
+    // Set default border color fields
+    setDefaultBoderColor(creditCardFields);
 
     // Check user not input the fields
     for (let field of creditCardFields) {
         if (! field.value) {
             checkCard = false;
-            fieldWarmming(field);
+            fieldWarning(field);
         }
     };
 
