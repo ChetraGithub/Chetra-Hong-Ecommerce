@@ -3,6 +3,7 @@ let localDataUser = JSON.parse(localStorage.getItem("userData"));
 
 // VARIABLES ========================================================
 const credit_card = document.querySelector("#credit-card");
+const user_rating = document.querySelector("#user-rating");
 let dom_container = document.querySelector(".container");
 let chek_out = document.querySelector("#chek-out");
 let get_name = document.querySelector("#get-name");
@@ -18,19 +19,7 @@ let card_name = document.querySelector("#card-name");
 let card_expiration = document.querySelector("#card-expiration");
 let fields = [get_name, get_surname, get_address, get_country, get_city, get_province, get_postal, get_mobile];
 let userCardInfor = [card_number, card_name, card_expiration];
-let dollar = 0;
-let riels = 0;
-
-// Get currency riels and dollar
-for (let product of localDataUser) {
-    if (product.currency === "$") {
-        dollar += product.price;
-    }
-    else if (product.currency === "៛") {
-        riels += product.price;
-
-    }
-};
+let numberOfstar = 0;
 
 // FUNCTIONS ========================================================
 // Hide dom element -------------------------------------------------
@@ -55,6 +44,8 @@ function fieldWarmming(element) {
 
 // Dispaly my products ----------------------------------------------
 function displayMyProducts() {
+    showMoney(localDataUser);
+
     document.querySelector("#list").remove();
 
     let list = document.createElement("div");
@@ -82,10 +73,6 @@ function displayMyProducts() {
         let laptop = document.createElement("div");
         laptop.className = "laptop";
 
-        // let image = document.createElement("img");
-        // image.src = product.image;
-        // details.appendChild(image);
-
         let brand = document.createElement("span");
         brand.id = "brand";
         brand.textContent = product.type;
@@ -108,6 +95,24 @@ function displayMyProducts() {
     };
 
     dom_container.appendChild(list);
+}
+
+// Price of products ------------------------------------------------
+function showMoney(products) {
+    let dollar = 0;
+    let riels = 0;
+
+    for (let product of products) {
+        if (product.currency == "$") {
+            dollar += product.price;
+        }else {
+            riels += product.price;
+        }
+        
+    };
+    console.log(dollar);
+    document.querySelector('#shopping').style.color = "blue";
+    document.querySelector('#shopping').textContent = "My Shopping (Dollar = " + dollar +"$, Riels = " + riels +"៛)";
 }
 
 // Delete my product ------------------------------------------------
@@ -154,7 +159,7 @@ function checkOutDefault(fields) {
     };
 }
 
-//  ----------------------------------------------
+// Validate credit card ----------------------------------------------
 function cardCorection() {
     // Set default check credit card
     let checkCard = true;
@@ -201,8 +206,56 @@ function cardCorection() {
     // Credit card corect all
     if (checkCard) {
         hide(credit_card);
+        show(user_rating);
         checkOutDefault(userCardInfor);
     }
+}
+
+// User give stars ----------------------------------------------------
+function whiteStarCheck(stars, index) {
+    stars.forEach(star => {
+        let starIndex = star.dataset.index;
+        if (starIndex <= index) {
+            star.style.color =  "gold";
+
+        } else {
+
+            star.style.color =  "gray";
+        }
+    });
+}
+
+// Set stars to products data ---------------------------------------
+function submitRating(products, numberOfStar) {
+    let localProducts = JSON.parse(localStorage.getItem("products")); 
+
+    for(let product of products) {
+        let index = parseInt(product.index);
+        localProducts[index].rating.user += 1;
+        let checkStar = localProducts[index].rating.star < numberOfStar;
+
+        if (checkStar) {
+            localProducts[index].rating.star = numberOfStar;
+        }
+
+    };
+
+    localStorage.setItem("products", JSON.stringify(localProducts));
+
+    hide(user_rating);
+    setDefaultStar(all_stars);
+
+
+    localDataUser = [];
+    localStorage.setItem("userData", JSON.stringify(localDataUser));
+    displayMyProducts();
+}
+
+// Set stars default color -----------------------------------------
+function setDefaultStar(stars) {
+    stars.forEach(element => {
+        element.style.color =  "gray";
+    });
 }
 // EVENTS ==========================================================
 const cancel = document.querySelector("#cancel");
@@ -226,6 +279,23 @@ const bth_cancel_pay = document.querySelector("#cancel-pay");
 bth_cancel_pay.addEventListener('click', function() {
     hide(credit_card);
     checkOutDefault(userCardInfor);
+});
+
+const all_stars = document.querySelectorAll(".give-star i");
+for (let i = 0; i < all_stars.length; i++) {
+    all_stars[i].dataset.index = i;
+    all_stars[i].addEventListener('click', function() {
+        whiteStarCheck(all_stars, i);
+        numberOfstar = i+1;
+    });
+    
+};
+
+const rating_submit = document.querySelector('.rating-submit button');
+rating_submit.addEventListener('click', function() {
+    if (numberOfstar != 0) {
+        submitRating(localDataUser, numberOfstar);
+    }
 });
 
 // MAIN ============================================================

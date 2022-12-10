@@ -1,5 +1,6 @@
 // DATA ==================================================================
 let userData = [];
+
 let products = JSON.parse(localStorage.getItem("products"));
 
 let indexOfProduct = JSON.parse(localStorage.getItem("productIndex"));
@@ -32,11 +33,13 @@ function loadData() {
 
 // Get user add cart ------------------------------------------------------
 function getProduct() {
+    product.index = indexOfProduct;
     userData.push(product);
     saveData();
     my_cart.textContent = "MY CART   + " + userData.length;
     document.querySelector("#tolal-cart").style.color = "blue";
     document.querySelector("#tolal-cart").style.fontWeight = "bold";
+
 }
 
 function showRating() {
@@ -46,8 +49,7 @@ function showRating() {
         i.className = "fa fa-star";
         i.ariaHidden = "true";
         rating.appendChild(i);
-    }
-    // console.log(numberOfStar);
+    };
 }
 // ADD EVENTS =============================================================
 const add_cart = document.querySelector("#buy");

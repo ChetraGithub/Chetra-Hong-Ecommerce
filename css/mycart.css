@@ -73,7 +73,7 @@
 }
 
 /* Check out shopping ------------------------------------------ */
-#chek-out, #credit-card {
+#chek-out, #credit-card, #user-rating {
     height: 100vh;
     width: 100%;
     position: fixed;
@@ -129,7 +129,7 @@
     font-size: 1rem;
 }
 
-.btn-active {
+.btn-active, .rating-submit > button {
     color: white !important;
     background:  rgb(37, 103, 224) !important;
     border: 1px solid rgb(52, 119, 241) !important;
@@ -137,4 +137,43 @@
 
 #credit-card {
     display: none;
+}
+
+#user-rating {
+    display: none;
+}
+
+.rating-container {
+    width: 40%;
+    height: 40%;
+    padding: 20px;
+    background: white;
+    border-radius: 20px;
+}
+
+.rating-container span {
+    font-size: 1.5rem;
+}
+
+.give-star {
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+    font-size: 4rem;
+    color: gray;
+    border-radius: 20px;
+    border: 3px solid gold;
+}
+
+.rating-submit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.rating-submit > button {
+    padding: 10px 30px;
+    font-size: 1rem;
+    border-radius: 12px;
 }

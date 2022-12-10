@@ -71,6 +71,10 @@
     display: flex;
     gap: 5px;
 }
+.rating > span {
+    font-size: 14px;
+    color: black;
+}
 .rating > i {
     color: gold;
 }
