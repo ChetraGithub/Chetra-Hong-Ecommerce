@@ -14,11 +14,11 @@ let get_city = document.querySelector("#city");
 let get_province = document.querySelector("#province");
 let get_postal = document.querySelector("#postal");
 let get_mobile = document.querySelector("#mobile");
-let card_number = document.querySelector("#card-number");
+let card_digits = document.querySelector("#card-number");
 let card_name = document.querySelector("#card-name");
 let card_expiration = document.querySelector("#card-expiration");
-let fields = [get_name, get_surname, get_address, get_country, get_city, get_province, get_postal, get_mobile];
-let userCardInfor = [card_number, card_name, card_expiration];
+let delivaryFields = [get_name, get_surname, get_address, get_country, get_city, get_province, get_postal, get_mobile];
+let creditCardFields = [card_digits, card_name, card_expiration];
 let numberOfstar = 0;
 
 // FUNCTIONS ========================================================
@@ -110,7 +110,6 @@ function showMoney(products) {
         }
         
     };
-    console.log(dollar);
     document.querySelector('#shopping').style.color = "blue";
     document.querySelector('#shopping').textContent = "My Shopping (Dollar = " + dollar +"$, Riels = " + riels +"៛)";
 }
@@ -134,7 +133,7 @@ function checkShopping(products){
 // Check user input information -------------------------------------
 function userCheckOut() {
     let completeFiels = true;
-    for (let field of fields) {
+    for (let field of delivaryFields) {
         if (field.value) {
             fieldDefault(field);
         }
@@ -146,12 +145,12 @@ function userCheckOut() {
 
     if (completeFiels) {
         hide(chek_out);
-        checkOutDefault(fields);
+        checkOutDefault(delivaryFields);
         show(credit_card);
     }
 }
 
-// Set alert default ------------------------------------------------
+// Set alert default -------------------------------------------------
 function checkOutDefault(fields) {
     for (let field of fields) {
         field.value = "";
@@ -159,55 +158,88 @@ function checkOutDefault(fields) {
     };
 }
 
-// Validate credit card ----------------------------------------------
-function cardCorection() {
-    // Set default check credit card
-    let checkCard = true;
-    for (let field of userCardInfor) {
+// Set credit card fields --------------------------------------------
+function setDefaultCardFields(fields) {
+    for (let field of fields) {
         fieldDefault(field);
     };
+}
 
-    // Check user not input the values
-    for (let field of userCardInfor) {
+// Check card digits -------------------------------------------------
+function checkCardDigits(numbers) {
+    let correction = true;
+    if (! card_digits.value) {
+        correction = false;
+    }
+    for (let num of numbers) { 
+        let numberInt = parseInt(num);
+
+        let checkValidCardNumber = numberInt.toString() == "NaN" || numbers.length != 16;
+        if (checkValidCardNumber) {
+            fieldWarmming(card_digits);
+            correction = false;
+        }
+    };
+    return correction;
+}
+
+// Check card expiration ---------------------------------------------
+function checkExpiration(month, year) {
+    let correction = true;
+
+    if (! card_expiration.value) {
+        correction = false;
+    }
+
+    var dateObj = new Date();
+    var now_month = dateObj.getUTCMonth() + 1;
+    var now_year = dateObj.getUTCFullYear();
+
+    let checkMonthAndYear = year < now_year || (year === now_year && month < now_month);
+    if (checkMonthAndYear) {
+        correction = false;
+        fieldWarmming(card_expiration);
+    }
+
+    return correction;
+}
+
+// Validate credit card ----------------------------------------------
+function validateCreditCard() {
+    // Condition check correction information
+    let checkCard = true;
+
+    // Set default card fields
+    setDefaultCardFields(creditCardFields);
+
+    // Check user not input the fields
+    for (let field of creditCardFields) {
         if (! field.value) {
             checkCard = false;
             fieldWarmming(field);
         }
     };
 
-    // Check card numbers
-    let numbers = card_number.value;
-    for (let num of numbers) { 
-        let numberInt = parseInt(num);
-
-        let checkValidCardNumber = numberInt.toString() == "NaN" || numbers.length != 16;
-        if (checkValidCardNumber) {
-            checkCard = false;
-            fieldWarmming(card_number);
-        }
-    };
-
-    // Check card expiration
-    var dateObj = new Date();
-    var month = dateObj.getUTCMonth() + 1;
-    var year = dateObj.getUTCFullYear();
-
-    
-    let cardExpiration = card_expiration.value;
-    let cardYear = parseInt(cardExpiration.slice(0, 4));
-    let cardMonth = parseInt(cardExpiration.slice(5, 7));
-    
-    let checkMonthAndYear = cardYear < year || (cardYear === year && cardMonth < month);
-    if (checkMonthAndYear) {
+    // Check card digits
+    let digits = card_digits.value;
+    if (! checkCardDigits(digits)) {
         checkCard = false;
-        fieldWarmming(card_expiration);
     }
 
-    // Credit card corect all
+    // Check card expiration
+    let cardExpiration = card_expiration.value;
+    let getYear = parseInt(cardExpiration.slice(0, 4));
+    let getMonth = parseInt(cardExpiration.slice(5, 7));
+
+    if (! checkExpiration(getMonth, getYear)) {
+        checkCard = false;
+    }
+
+    // Check card correct all
     if (checkCard) {
         hide(credit_card);
         show(user_rating);
-        checkOutDefault(userCardInfor);
+        checkOutDefault(creditCardFields);
     }
 }
 
@@ -261,7 +293,7 @@ function setDefaultStar(stars) {
 const cancel = document.querySelector("#cancel");
 cancel.addEventListener('click', function() {
     hide(chek_out);
-    checkOutDefault(fields);
+    checkOutDefault(delivaryFields);
 });
 
 const on_buy = document.querySelector("#on-buy");
@@ -273,12 +305,12 @@ const add = document.querySelector("#add");
 add.addEventListener('click', userCheckOut);
 
 const btn_pay = document.querySelector("#pay");
-btn_pay.addEventListener('click', cardCorection);
+btn_pay.addEventListener('click', validateCreditCard);
 
 const bth_cancel_pay = document.querySelector("#cancel-pay");
 bth_cancel_pay.addEventListener('click', function() {
     hide(credit_card);
-    checkOutDefault(userCardInfor);
+    checkOutDefault(creditCardFields);
 });
 
 const all_stars = document.querySelectorAll(".give-star i");

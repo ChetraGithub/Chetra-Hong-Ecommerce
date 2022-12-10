@@ -62,7 +62,7 @@ function uploadProduct() {
     let maxSell = 4000;
     if (getCurrency.value == "៛") {
         maxSell = 16000000;
-    } 
+    }
 
     if (!(checkDataField)) {
         for(let fild of listOfField) {
