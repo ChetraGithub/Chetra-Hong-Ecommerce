@@ -62,3 +62,54 @@ nav {
     color: blue;
     border-bottom: 2px solid blue;
 }
+
+footer {
+    height: 60vh;
+    margin-top: 100px;
+    background: #000000;
+    color: white;
+}
+
+.footer-information {
+    height: 90%;
+    margin-left: 100px;
+    display: flex;
+    gap: 40px;
+}
+
+.foot-left, .foot-right , .foot-center {
+    width: 25%;
+    margin-top: 50px;
+}
+
+.foot-center, .foot-right {
+    display: flex;
+    flex-direction: column;
+    color: gray;
+    gap: 10px;
+}
+
+.foot-center span:hover, .foot-right span:hover {
+    color: white;
+}
+
+.foot-left a {
+    color: white;
+}
+
+.foot-title {
+    font-size: 1.3rem;
+    color: white;
+}
+
+.footer-botton {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    background: rgb(58, 58, 58);
+}
+
+.footer-botton span {
+    font-size: 0.8rem;
+    margin-left: 100px;
+}
