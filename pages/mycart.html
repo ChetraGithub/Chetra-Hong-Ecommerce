@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY CART</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/mycart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script defer src="../js/mycart.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="../index.html" class="link active">CUSTOMER</a>
+            <a href="seller.html" class="link-seller link">SELLER</a>
+        </div>
+        <div class="nav-center">
+            <a href="../index.html">CHETRA COMPUTER</a>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="link active" id="tolal-cart">
+                <i id="delete" class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <span id="my-cart">MY CART</span>
+            </a>
+        </div>
+    </nav>
+
+    <div id="chek-out">
+        <div class="form-container">
+            <form>
+                <span id="title">Add a delivery and collection mail address</span>
+                <input id="get-name" type="text" placeholder="Name">
+                <input id="surname" type="text" placeholder="Surname">
+                <input id="address" type="text" placeholder="Address name">
+                <input id="country" type="text" placeholder="Country">
+                <input id="city" type="text" placeholder="City/Town">
+                <input id="province" type="text" placeholder="Province">
+                <input id="postal" type="text" placeholder="Postal Code">
+                <input id="mobile" type="text" placeholder="Mobile number">
+            </form>
+            <button id="cancel">Cancel</button>
+            <button id="add" class="btn-active">Add</button>
+        </div>
+    </div>
+
+    <div id="credit-card">
+        <div class="form-container">
+            <form>
+                <span id="title">Payment Details</span>
+                <label for="card-number">CARD NUMBER</label>
+                <input id="card-number" type="text" placeholder="Enter 16 digits">
+                <label for="card-name">CARD NAME</label>
+                <input id="card-name" type="text" placeholder="Enter full name">
+                <label for="card-expiration">EXPIRATION</label>
+                <input id="card-expiration" type="month">
+            </form>
+            <button id="cancel-pay">Cancel</button>
+            <button id="pay" class="btn-active">Pay Now</button>
+        </div>
+    </div>
+
+    <div id="user-rating">
+        <div class="rating-container">
+            <span>Star Rating</span>
+            <div class="give-star">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+            </div>
+            <div class="rating-submit">
+                <button type="button">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="menu">
+            <div class="menu-left">
+                <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                <span id="shopping">My Shopping</h1>
+            </div>
+            <button id="on-buy">Buy Now</button>
+        </div>
+        <div id="list">
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-information">
+            <div class="foot-left">
+                <a href="../index.html"><h2>CHETRA COMPUTER</h2></a>
+            </div>
+            <div class="foot-center">
+                <span class="foot-title">Information</span>
+                <span>Address:</span>
+                <span>BP 511, Phum Tropeang Chhuk (Borey Sorla) Sangtak, Street 371, Phnom Penh</span>
+            </div>
+            <div class="foot-right">
+                <span class="foot-title">Email Contacts</span>
+                <span>For marketing & corporate opportunity:</span>
+                <span>chetracomouter@gmail.com</span>
+            </div>
+        </div>
+        <div class="footer-botton">
+            <span>© 2022, Chetra Computer. All Rights Reserved.</span>
+        </div>
+    </footer>
+</body>
+</html>

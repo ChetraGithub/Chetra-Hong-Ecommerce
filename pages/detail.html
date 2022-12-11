@@ -4,55 +4,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHETRA COMPUTER | CUSTOMER</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/customer.css">
+    <title>CHETRA COMPUTER | DETAILS</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/detail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script defer src="js/customer.js"></script>
+    <script defer src="../js/detail.js"></script>
 </head>
 <body>
     <nav>
         <div class="nav-left">
-            <a href="index.html" class="link active">CUSTOMER</a>
-            <a href="pages/seller.html" class="link-seller link">SELLER</a>
+            <a href="../index.html" class="link active">CUSTOMER</a>
+            <a href="seller.html" class="link-seller link">SELLER</a>
         </div>
         <div class="nav-center">
-            <a href="index.html">CHETRA COMPUTER</a>
+            <a href="../index.html">CHETRA COMPUTER</a>
         </div>
         <div class="nav-right">
-            <a href="pages/mycart.html" class="link">
+            <a href="mycart.html" class="link" id="tolal-cart">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                MY CART
+                <span id="my-cart">MY CART</span>
             </a>
         </div>
     </nav>
 
-    <div id="container">
-        <div class="user-find">
-            <div class="find">
-                <select name="" id="by-brand">
-                    <option value="" selected disabled>By brand</option>
-                    <option value="Apple">Apple</option>
-                    <option value="MSI">MSI</option>
-                    <option value="Lenovo">Lenovo</option>
-                    <option value="Asus">Asus</option>
-                    <option value="Accer">Accer</option>
-                    <option value="Dell">Dell</option>
-                    <option value="Hp">Hp</option>
-                    <option value="Other...">Other...</option>
-                </select>
-                <input id="search" type="search" placeholder="Search products here">
+    <div class="container">
+        <div id="item">
+            <div id="image">
+                <img id="img" src="" alt="computer">
             </div>
-        </div>
-        <div id="product-display">
+            <div id="detail">
+                <h1 id="name"></h1>
+                <div id="more">
+                    <span id="description"></span>
+                    <span id="comment"></span>
+                    <span id="type"></span>
+                    <span id="price"></span>
+                </div>
+                <div id="buying">
+                    <div id="rating">
 
+                    </div>
+                    <button id="buy">
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        <span>ADD ++</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer>
         <div class="footer-information">
             <div class="foot-left">
-                <a href="index.html"><h2>CHETRA COMPUTER</h2></a>
+                <a href="../index.html"><h2>CHETRA COMPUTER</h2></a>
             </div>
             <div class="foot-center">
                 <span class="foot-title">Information</span>

@@ -1,0 +1,103 @@
+#container {
+    height: auto;
+    margin: 40px 100px;
+}
+
+.user-find {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.find {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+#by-brand, #search {
+    width: 20%;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    border: 1px solid rgb(133, 132, 132);
+    background: white;
+}
+
+
+#search {
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+#search:hover{
+    width: 60%;
+    border: 1px solid blue;
+
+}
+
+#product-display {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px 20px;
+}
+
+.item {
+    height: 50vh;
+    padding: 20px 15px;
+    background: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: transform .30s;
+}
+
+.item:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transform: scale(1.01);
+}
+
+#hide-brand {
+    display: none;
+}
+
+.item > a {
+    text-decoration: none;
+}
+
+.rating {
+    height: 8%;
+    display: flex;
+    gap: 5px;
+}
+.rating > span {
+    font-size: 14px;
+    color: black;
+}
+.rating > i {
+    color: gold;
+}
+.image {
+    height: 82%;
+}
+
+#computer-img {
+    width: 100%;
+}
+
+.detail {
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+#name {
+    color: rgb(54, 54, 54);
+} 
+
+#price {
+    color: black;
+    font-weight: bold;
+}

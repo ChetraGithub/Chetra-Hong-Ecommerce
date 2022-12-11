@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chetra Computer | Seller</title>
+    <title>CHETRA COMPUTER | SELLER</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script defer src="../js/seller.js"></script>
 </head>
 <body>
     <nav>
         <div class="nav-left">
-            <a href="#" class="link">CUSTOMER</a>
-            <a href="#" class="link-seller link" id="active">SELLER</a>
+            <a href="../index.html" class="link">CUSTOMER</a>
+            <a href="seller.html" class="link-seller link active">SELLER</a>
         </div>
         <div class="nav-center">
-            <a href="#" class="link">CHETRA COMPUTER</a>
+            <a href="../index.html">CHETRA COMPUTER</a>
         </div>
         <div class="nav-right">
             <a href="#" class="link">LOGIN</a>
@@ -29,13 +30,11 @@
             <form id="imformation">
                 <div class="form-group two-col">
                     <div class="add-left">
-                        <label for="pdt-name">Product name :</label><br>
                         <input id="pdt-name" type="text" placeholder="Enter product name...">
                     </div>
                     <div class="add-right">
-                        <label for="pdt-type">Product type :</label><br>
                         <select id="pdt-type" name="pdt-type">
-                            <option value="" selected disabled>Select</option>
+                            <option value="" selected disabled>Brand</option>
                             <option value="Apple">Apple</option>
                             <option value="MSI">MSI</option>
                             <option value="Lenovo">Lenovo</option>
@@ -49,29 +48,25 @@
                 </div>
                 <div class="form-group two-col">
                     <div class="add-left">
-                        <label for="pdt-price">Product price :</label><br>
-                        <input id="pdt-price" type="text" placeholder="Enter only number...">
-                    </div>
-                    <div class="add-right">
-                        <label for="currency">Currency</label>
                         <select name="currency" id="currency">
                             <option value="" selected disabled>Currency</option>
-                            <option value="៛">Riels</option>
-                            <option value="$">Dollar</option>
+                            <option id="riel" value="៛">Riels</option>
+                            <option id="dollar" value="$">Dollar</option>
                         </select>
+                    </div>
+                    <div class="add-right">
+                        <input id="pdt-price" type="number" placeholder="Enter price">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="pdt-description">Product descriptions :</label><br>
-                    <textarea name="pdt-description" id="pdt-description"></textarea>
+                    <textarea name="pdt-description" id="pdt-description" placeholder="Enter description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="pdt-comment">Comments :</label><br>
-                    <textarea name="pdt-comment" id="pdt-comment"></textarea>
+                    <textarea name="pdt-comment" id="pdt-comment" placeholder="Enter comment"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="pdt-image">Image of product :</label><br>
-                    <input id="pdt-image" type="file">
+                <div class="form-group choose">
+                    <input type="file" id="pdt-image" accept="image/*">
+                    <label id="getFor" for="pdt-image">Choose image</label>
                 </div>
                 <div class="btn-group">
                     <button id="btn-cancel" type="button">Cancel</button>
@@ -91,8 +86,29 @@
             </div>
         </div>
         <div id="display-product">
-            
+        
         </div>
     </div>
+
+    <footer>
+        <div class="footer-information">
+            <div class="foot-left">
+                <a href="../index.html"><h2>CHETRA COMPUTER</h2></a>
+            </div>
+            <div class="foot-center">
+                <span class="foot-title">Information</span>
+                <span>Address:</span>
+                <span>BP 511, Phum Tropeang Chhuk (Borey Sorla) Sangtak, Street 371, Phnom Penh</span>
+            </div>
+            <div class="foot-right">
+                <span class="foot-title">Email Contacts</span>
+                <span>For marketing & corporate opportunity:</span>
+                <span>chetracomouter@gmail.com</span>
+            </div>
+        </div>
+        <div class="footer-botton">
+            <span>© 2022, Chetra Computer. All Rights Reserved.</span>
+        </div>
+    </footer>
 </body>
 </html>

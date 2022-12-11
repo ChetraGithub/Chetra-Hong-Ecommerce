@@ -1,0 +1,179 @@
+.container {
+    height: auto;
+    margin: 50px 100px;
+}
+
+#menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+#shopping {
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+#on-buy {
+    padding: 12px 40px;
+    border-radius: 20px;
+    border: none;
+    background: blue;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+#list {
+    height: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.item {
+    height: 30vh;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background: white;
+    overflow: hidden;
+}
+
+#close {
+    height: 15%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: blue;
+}
+
+#close > i {
+    margin-right: 20px;
+    color: white;
+    font-size: 1.5rem;
+}
+
+#close > i:hover {
+    color: rgb(255, 29, 29);
+}
+
+.details {
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#price {
+    font-weight: bold;
+}
+
+/* Check out shopping ------------------------------------------ */
+#chek-out, #credit-card, #user-rating {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#chek-out {
+    display: none;
+}
+
+.form-container {
+    height: auto;
+    width: 60%;
+    padding: 20px;
+    border-radius: 20px;
+    background: white;
+}
+
+.form-container > form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#title {
+    font-size: 1.4rem;
+    padding: 8px;
+    border-bottom: 1px solid gray;
+}
+
+.form-container > form > input, select {
+    padding: 10px;
+    outline: none;
+    border: 1px solid gray;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.form-container > button {
+    padding: 12px;
+    width: 130px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background: white;
+    border: 1px solid red;
+    color: red;
+    font-size: 1rem;
+}
+
+.btn-active, .rating-submit > button {
+    color: white !important;
+    background:  rgb(37, 103, 224) !important;
+    border: 1px solid rgb(52, 119, 241) !important;
+}
+
+#credit-card {
+    display: none;
+}
+
+#user-rating {
+    display: none;
+}
+
+.rating-container {
+    width: 40%;
+    height: 40%;
+    padding: 20px;
+    background: white;
+    border-radius: 20px;
+}
+
+.rating-container span {
+    font-size: 1.5rem;
+}
+
+.give-star {
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+    font-size: 4rem;
+    color: gray;
+    border-radius: 20px;
+    border: 3px solid gold;
+}
+
+.rating-submit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.rating-submit > button {
+    padding: 10px 30px;
+    font-size: 1rem;
+    border-radius: 12px;
+}
