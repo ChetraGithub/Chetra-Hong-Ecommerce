@@ -4,10 +4,7 @@ let dom_container = document.querySelector("#container");
 let dom_alert = document.querySelector("#alert");
 
 // DATABASE ===============================================================
-let products = [{ name: "Mac Book Pro 2022", type: "Apple", price: 1999.99, currency: "$", description: "12G Ram, 1TB M1", comment: "From China", rating: {user: 1000, star: 5}, image: "images/01.jpeg"},
-{ name: "MSI T 450", type: "MSI", price: 750, currency: "$", description: "16G Ram, 2TB SSD", comment: "From China", rating: {user: 50, star: 3}, image: "images/02.png"},
-{ name: "MSI T 450", type: "MSI", price: 750, currency: "$", description: "16G Ram, 2TB SSD", comment: "From China", rating: {user: 50, star: 3}, image: "images/02.png",},
-{ name: "TUF Gaming Pro 2022", type: "MSI", price: 200000, currency: "៛", description: "12G SSD, 520G SSD", comment: "From China", image: "images/03.png", rating: {user: 100, star: 2}}];
+let products = [];
 
 // VARIABLES ==============================================================
 const imageFile = document.querySelector('#pdt-image');
@@ -24,8 +21,8 @@ let listOfField = [getName, getType, getPrice, getCurrency, getDescription, getC
 let indexOfProduct = products.length;
 let maxRielsAmount = 16000000;
 let maxDollarAmount = 4000;
+let minimumAmount = 0;
 let numberOfProduct = 0;
-let canSell = 0;
 let imageURL = "";
 let getRating = {};
 
@@ -53,40 +50,60 @@ function onHide(element) {
     element.style.display = "none";
 }
 
+// Set field border gray ----------------------------------------------------
+function defaultField(element) {
+    element.style.border = "1px solid gray";
+}
+
+// Set field border red ----------------------------------------------------
+function warningField(element) {
+    element.style.border = "1px solid red";
+}
+
+// Check information in fields ----------------------------------------------
+function checkFields() {
+    let checkInformation = true;
+    let allValues =  getName.value && getType.value && getPrice.value && getDescription.value && getComment.value;
+    if (! allValues) {
+        checkInformation = false;
+    }
+
+    return checkInformation;
+}
 
 // On create products --------------------------------------------------------
 function uploadProduct() {
     let sellerPrice = parseInt(getPrice.value);
-    let checkDataField = getName.value && getType.value && getPrice.value && getDescription.value && getComment.value;
 
     let maxSell = 4000;
     if (getCurrency.value == "៛") {
         maxSell = 16000000;
     }
 
-    if (!(checkDataField)) {
-        for(let fild of listOfField) {
-            if (! (fild.value)) {
-                fild.style.border = "1px solid red";
+    if (! checkFields()) {
+        for(let field of listOfField) {
+            if (! field.value) {
+                warningField(field);
             }
             else {
-                fild.style.border = "1px solid gray";
+                defaultField(field);
             }
         };
     }
     else if (sellerPrice > maxSell) {
-        getPrice.style.border = "1px solid red";
+        warningField(getPrice);
     }
     else {
-        let product = {};
-        product.name = getName.value;
-        product.type = getType.value;
-        product.price = parseFloat(getPrice.value);
-        product.currency = getCurrency.value;
-        product.description = getDescription.value;
-        product.comment = getComment.value;
-        product.image = imageURL;
-        product.rating = getRating;
+        let product = {
+            name: getName.value,
+            type: getType.value,
+            price: parseFloat(getPrice.value),
+            currency: getCurrency.value,
+            description: getDescription.value,
+            comment: getComment.value,
+            image: imageURL,
+            rating: getRating
+        };
 
         // Add product to list
         products.splice(indexOfProduct, 0, product);
@@ -105,8 +122,8 @@ function onCreateProduct(event) {
     getCurrency.value = "";
     getDescription.value = "";
     getComment.value = "";
-    // imageFile.value = "";
-    canSell = 0;
+    imageURL = "";
+    minimumAmount = 0;
 
     titleForm.textContent = "Create a Product";
     btn_add.textContent = "Create";
@@ -154,8 +171,8 @@ function onRemoveProduct(event) {
 function onCancel(event) {
     products = JSON.parse(localStorage.getItem("products"));
     onHide(dom_dialog);
-    for(let fild of listOfField) {
-        fild.style.border = "1px solid gray";
+    for(let field of listOfField) {
+        defaultField(field);
     };
     getPrice.placeholder = "Enter price";
 }
@@ -251,16 +268,16 @@ function uploadCurrency() {
     let currency = getCurrency.value;
     let sign = "៛";
     if (currency === "$") {
-        canSell = maxDollarAmount;
+        minimumAmount = maxDollarAmount;
         sign = "$";
     }
     else if (currency === "៛") {
-        canSell = maxRielsAmount;
+        minimumAmount = maxRielsAmount;
     }
     else {
-        canSell = 0;
+        minimumAmount = 0;
     }
-    getPrice.placeholder = canSell + sign + " Down";
+    getPrice.placeholder = minimumAmount + sign + " Down";
 }
 
 // Upload Image -----------------------------------------------------------

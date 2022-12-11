@@ -132,18 +132,18 @@ function checkShopping(products){
 
 // Check user input information -------------------------------------
 function userCheckOut() {
-    let completeFiels = true;
+    let completeFields = true;
     for (let field of delivaryFields) {
         if (field.value) {
             fieldDefault(field);
         }
         else {
-            completeFiels = false;
+            completeFields = false;
             fieldWarning(field);
         }
     };
 
-    if (completeFiels) {
+    if (completeFields) {
         hide(chek_out);
         checkOutDefault(delivaryFields);
         show(credit_card);
