@@ -38,12 +38,13 @@
 
 #detail > h1, #more, #buying {
     margin-left: 30px;
+    margin-right: 30px;
 }
 #more {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    font-size: 1.3rem;
+    gap: 12px;
+    font-size: 1.1rem;
 }
 
 #price {
